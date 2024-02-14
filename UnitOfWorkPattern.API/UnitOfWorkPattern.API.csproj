@@ -20,11 +20,7 @@
 
 	<ItemGroup>
 		<Folder Include="Controllers\" />
-		<Folder Include="Filters\" />
-		<Folder Include="Interfaces\Services\" />
 		<Folder Include="Middlewares\" />
-		<Folder Include="Services\" />
-		<Folder Include="Settings\" />
 	</ItemGroup>
 
 </Project>

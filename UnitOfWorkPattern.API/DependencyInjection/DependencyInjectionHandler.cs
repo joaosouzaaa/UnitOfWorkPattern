@@ -15,6 +15,9 @@ public static class DependencyInjectionHandler
             options.UseSqlServer(connectionString);
         });
 
+        services.AddSettingsDependencyInjection();
+        services.AddFiltersDependencyInjection();
         services.AddRepositoriesDependencyInjection();
+        services.AddServicesDependencyInjection();
     }
 }
