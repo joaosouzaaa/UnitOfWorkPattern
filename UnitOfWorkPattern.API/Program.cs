@@ -1,6 +1,7 @@
 using UnitOfWorkPattern.API.Constants;
 using UnitOfWorkPattern.API.DependencyInjection;
 using UnitOfWorkPattern.API.Middlewares;
+using UnitOfWorkPattern.API.Settings.MigrationSettings;
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
@@ -26,5 +27,6 @@ app.UseHttpsRedirection();
 app.UseCors(CorsPoliciesNamesConstants.CorsPolicy);
 app.UseAuthorization();
 app.MapControllers();
+app.MigrateDatabase();
 
 app.Run();

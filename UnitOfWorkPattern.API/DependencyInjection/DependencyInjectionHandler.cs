@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UnitOfWorkPattern.API.Data.DatabaseContexts;
+using UnitOfWorkPattern.API.Factories;
 
 namespace UnitOfWorkPattern.API.DependencyInjection;
 
@@ -11,7 +12,7 @@ public static class DependencyInjectionHandler
 
         services.AddDbContext<UnitOfWorkPatternDbContext>(options =>
         {
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            var connectionString = configuration.GetConnectionString();
             options.UseSqlServer(connectionString);
         });
 

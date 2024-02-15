@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  sqldataunitofwork:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssql-container-profile
+    environment:
+      - SA_PASSWORD=TestUnitOfWork123
+      - ACCEPT_EULA=Y
+
+  unitofworkpattern.api:
+    image: ${DOCKER_REGISTRY-}unitofworkpatternapi
+    environment:
+      - DOCKER_ENVIROMENT=DEV_DOCKER_UOF
+    build:
+      context: .
+      dockerfile: UnitOfWorkPattern.API/Dockerfile
+    depends_on:
+      - sqldataunitofwork
+
