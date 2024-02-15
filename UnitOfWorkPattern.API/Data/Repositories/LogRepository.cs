@@ -11,6 +11,10 @@ public sealed class LogRepository : BaseRepository<Log>, ILogRepository
     {
     }
 
-    public async Task AddAsync(Log log) =>
+    public async Task AddAsync(Log log)
+    {
         await DbContextSet.AddAsync(log);
+
+        await _dbContext.SaveChangesAsync();
+    }
 }

@@ -31,6 +31,29 @@ public sealed class ClientService(IClientRepository clientRepository, ILogReposi
         await logRepository.AddAsync(log);
     }
 
+    public async Task AddAsyncTriggersUnitOfWorkPattern(ClientSave clientSave)
+    {
+        var client = SaveToDomain(clientSave);
+
+        if (!IsClientValid(client))
+        {
+            notificationHandler.AddNotification("Invalid", "The Client is invalid");
+
+            return;
+        }
+
+        await clientRepository.AddAsync(client);
+
+        var log = new Log()
+        {
+            CreationDate = DateTime.Now,
+            Message = new string('a', 202)
+        };
+
+        // fails at here 
+        await logRepository.AddAsync(log);
+    }
+
     private static Client SaveToDomain(ClientSave clientSave) =>
         new()
         {

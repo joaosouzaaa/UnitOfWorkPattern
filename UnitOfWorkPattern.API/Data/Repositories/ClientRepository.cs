@@ -11,6 +11,10 @@ public sealed class ClientRepository : BaseRepository<Client>, IClientRepository
     {
     }
 
-    public async Task AddAsync(Client client) =>
+    public async Task AddAsync(Client client)
+    {
         await DbContextSet.AddAsync(client);
+
+        await _dbContext.SaveChangesAsync();
+    }
 }
